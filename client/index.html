@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="container">
+    <button id="complimentButton">Get a compliment</button>
+    <button id="fortuneButton">Get your fortune</button>
+    </p>
+    <form class="compliment-post" >
+      <div class="compliment-section">
+          <textarea rows="3" name="compliment"></textarea>
+          <button type="submit" class="button">Submit your own compliment</button>
+      </div>
+    </form>
+    </p>
+    <button id="delete-compliments">Delete old compliments here</button>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      function buttonReply(buttonId, url) {
+        document.getElementById(buttonId).onclick = function () {
+        axios.get(url)
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+      }
+
+      const complimentPostForms = document.querySelectorAll('.compliment-post')
+
+      complimentPostForms.forEach(form => {
+          form.addEventListener('submit', (e) => {
+              e.preventDefault()
+              const formData = {"value": e.target[0].value}
+
+              // console.log(formData)
+
+              axios
+                  .post("http://localhost:4000/api/compliment/", formData)
+                  .catch(console.error);
+
+                  e.target[0].value = ""
+          })
+      })
+
+      const deleteAllCompliments = document.getElementById("delete-compliments")
+        .onclick = function () {
+          axios.delete("http://localhost:4000/api/compliment/")
+        }
+
+      buttonReply("complimentButton", "http://localhost:4000/api/compliment/")
+      buttonReply("fortuneButton", "http://localhost:4000/api/fortune/")
+    </script>
+  </body>
+</html>
