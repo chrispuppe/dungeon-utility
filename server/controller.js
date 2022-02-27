@@ -6,9 +6,11 @@ module.exports = {
     },
 
     addCharacter: (req, res) => {
-        let {character} = req.body
+        let character = req.body
+        // console.log(character)
         characterCards.push(character)
         res.status(200).send(characterCards)
+        console.log(characterCards)
     },
 
     updateCharacter: (req, res) => {
@@ -16,7 +18,9 @@ module.exports = {
     },
 
     deleteCharacter: (req, res) => {
-
+        let charToDelete = req.params.id
+        characterCards.splice(charToDelete, 1)
+        res.status(200).send(characterCards)
     }
 
 

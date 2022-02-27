@@ -8,18 +8,25 @@
     <link rel="style" href="styles.css"/>
 </head>
 <body class="container">
-    <form class="compliment-post" >
-      <div class="compliment-section">
-          <textarea rows="3" name="compliment"></textarea>
-          <button type="submit" class="button">Submit your own compliment</button>
-      </div>
-    </form>
-    </p>
-    <button id="delete-compliments">Delete old compliments here</button>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="index.js">
-      
-    </script>
+  <div id="form-div">
+    <form>
+        <input id="name-input" type="text" placeholder="Character Name" autocomplete="off"/>
+        <input id="race-input" type="text" placeholder="Character Race" autocomplete="off"/>
+        <input id="ac-input" type="number" placeholder="Character AC" autocomplete="off"/>
+        <input id="hp-input" type="number" placeholder="Character HP" autocomplete="off"/>
+        <button id="character-add" type="submit">Add</button>
+    </form>
+  </div>
+
+  <div id="list-container">    
+    <div>
+        <h2 class="list-title">Characters</h2>
+        <ul class="list-div" id="character-list"></ul>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="index.js"></script>
   </body>
 </html>

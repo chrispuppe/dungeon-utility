@@ -21,8 +21,8 @@ const {
 app.get('/characters', getCharacters)
 // app.get('/books', getBooks)
 // app.get('/read', getRead)
-// app.post('/book', addBook)
-// app.delete('/books/:title', deleteBook)
+app.post('/character', addCharacter)
+app.delete('/characters/:id', deleteCharacter)
 // app.delete('/read/:title', deleteRead)
 // app.put('/books/:title', moveBook)
 
