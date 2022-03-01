@@ -5,6 +5,11 @@ module.exports = {
         res.status(200).send(characterCards)
     },
 
+    getCharacter: (req, res) => {
+        let charId = req.params.id
+        res.status(200).send(characterCards[charId])
+    },
+
     addCharacter: (req, res) => {
         let character = req.body
         // console.log(character)
@@ -14,15 +19,28 @@ module.exports = {
     },
 
     updateCharacter: (req, res) => {
-
+        let charId = req.params.id
+        characterCards[charId].name = req.body.name
+        characterCards[charId].race = req.body.race
+        characterCards[charId].hp = req.body.hp
+        characterCards[charId].ac = req.body.ac
     },
 
     deleteCharacter: (req, res) => {
         let charToDelete = req.params.id
         characterCards.splice(charToDelete, 1)
         res.status(200).send(characterCards)
-    }
+    },
 
+    charHpUp: (req, res) => {
+        let charId = req.params.id
+        characterCards[charId].hp++
+    },
+
+    charHpDown: (req, res) => {
+        let charId = req.params.id
+        characterCards[charId].hp--
+    },
 
     // function rollDice(side, qty){
     //     let sum = 0

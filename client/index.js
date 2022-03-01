@@ -1,15 +1,34 @@
 const createCard = (charObj, charId) => {
-    let characterList = document.createElement('li')
+    let characterCard = document.createElement('Div')
     let characterName = document.createElement('span')
+    let characterRace = document.createElement('span')
+    let characterAc = document.createElement('span')
+    let characterHp = document.createElement('span')
+
     characterName.textContent = charObj[charId].name
-    characterList.appendChild(characterName)
+    characterCard.appendChild(characterName)
+    characterRace.textContent = charObj[charId].race
+    characterCard.appendChild(characterRace)
+    characterAc.textContent = charObj[charId].ac
+    characterCard.appendChild(characterAc)
+    characterHp.textContent = charObj[charId].hp
+    characterCard.appendChild(characterHp)
+
     let deleteButton = document.createElement('button')
     deleteButton.className = 'delete-button'
     deleteButton.textContent = 'Delete'
     deleteButton.name = `${charId}`
     deleteButton.addEventListener('click', deleteCharacter)
-    characterList.appendChild(deleteButton)
-    document.querySelector('ul').appendChild(characterList)
+    characterCard.appendChild(deleteButton)
+
+    let updateButton = document.createElement('button')
+    updateButton.className = 'update-button'
+    updateButton.textContent = 'Update'
+    updateButton.name = `${charId}`
+    updateButton.addEventListener('click', updateStart)
+    characterCard.appendChild(updateButton)
+
+    document.querySelector('ul').appendChild(characterCard)
 }
 
 const getCharacters = () => {
@@ -69,6 +88,41 @@ const deleteCharacter = (event) => {
     .catch((err) => console.log(err))
 }
 
+const updateStart = (event) => {
+    event.preventDefault()
 
+    let charId = event.target.name
+    console.log(charId)
+    
+    axios.get(`http://localhost:4444/character/${charId}`)
+    .then((res) => {
+        const character = res.data
+        // console.log(data)
+        let nameInput = document.querySelector("#name-input")
+        let raceInput = document.querySelector("#race-input")
+        let acInput = document.querySelector("#ac-input")
+        let hpInput = document.querySelector("#hp-input")
+
+        nameInput.value = character.name
+        raceInput.value = character.race
+        acInput.value = character.ac
+        hpInput.value = character.hp
+        
+    })
+    .catch((err) => console.log(err))
+}
+
+const updateSave = (event) => {
+    event.preventDefault()
+
+    let charId = event.target.name
+    console.log(charId)
+    axios.put(`http://localhost:4444/characters/${charId}`)
+    .then((res) => {
+        document.querySelector('#character-list').innerHTML = ''
+        getCharacters()
+    })
+    .catch((err) => console.log(err))
+}
 
 getCharacters()
