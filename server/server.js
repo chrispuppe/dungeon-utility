@@ -19,11 +19,8 @@ const {
 } = ctrlFuncs
 
 app.get('/characters', getCharacters)
-// app.get('/books', getBooks)
-// app.get('/read', getRead)
 app.post('/character', addCharacter)
 app.delete('/characters/:id', deleteCharacter)
-// app.delete('/read/:title', deleteRead)
-// app.put('/books/:title', moveBook)
+// app.put('/characters/:title', updateCharacter)
 
 app.listen(port, () => console.log(`Server running on ${port}`));

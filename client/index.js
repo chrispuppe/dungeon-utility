@@ -1,21 +1,24 @@
+const createCard = (charObj, charId) => {
+    let characterList = document.createElement('li')
+    let characterName = document.createElement('span')
+    characterName.textContent = charObj[charId].name
+    characterList.appendChild(characterName)
+    let deleteButton = document.createElement('button')
+    deleteButton.className = 'delete-button'
+    deleteButton.textContent = 'Delete'
+    deleteButton.name = `${charId}`
+    deleteButton.addEventListener('click', deleteCharacter)
+    characterList.appendChild(deleteButton)
+    document.querySelector('ul').appendChild(characterList)
+}
 
 const getCharacters = () => {
     axios.get('http://localhost:4444/characters')
     .then((res) => {
         const data = res.data
-        console.log(data)
+        // console.log(data)
         for (let i = 0; i < data.length; i++) {
-            let characterList = document.createElement('li')
-            let characterName = document.createElement('span')
-            characterName.textContent = data[i].name
-            characterList.appendChild(characterName)
-            let deleteButton = document.createElement('button')
-            deleteButton.className = 'delete-button'
-            deleteButton.textContent = 'Delete'
-            deleteButton.name = `${i}`
-            deleteButton.addEventListener('click', deleteCharacter)
-            characterList.appendChild(deleteButton)
-            document.querySelector('ul').appendChild(characterList)
+            createCard(data, i)
         }
     })
     .catch((err) => console.log(err))
@@ -34,25 +37,15 @@ const addCharacter = (event) => {
         ac: parseInt(acInput.value),
         hp: parseInt(hpInput.value)
     }
-    console.log(character)
+    // console.log(character)
 
 
     axios.post('http://localhost:4444/character', character)
     .then((res) => {
         let charObj = res.data
-        let newList = document.createElement('li')
-        let newSpan = document.createElement('span')
-        console.log(charObj)
-        newSpan.textContent = charObj[charObj.length -1].name
-        newList.appendChild(newSpan)
-        let deleteButton = document.createElement('button')
-        deleteButton.className = 'delete-button'
-        deleteButton.textContent = 'Delete'
-        deleteButton.addEventListener('click', deleteCharacter)
-        newList.appendChild(deleteButton)
         let newCharId = res.data.length - 1
-        deleteButton.name = `${newCharId}`
-        document.querySelector('ul').appendChild(newList) 
+        createCard(charObj,newCharId)
+
         nameInput.value = ''
         raceInput.value = ''
         acInput.value = ''

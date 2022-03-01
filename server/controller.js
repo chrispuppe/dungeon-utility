@@ -10,7 +10,7 @@ module.exports = {
         // console.log(character)
         characterCards.push(character)
         res.status(200).send(characterCards)
-        console.log(characterCards)
+        // console.log(characterCards)
     },
 
     updateCharacter: (req, res) => {
