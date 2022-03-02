@@ -108,8 +108,6 @@ const updateStart = (event) => {
 
     let charId = event.target.name
     console.log(charId)
-
-    
     
     axios.get(`http://localhost:4444/character/${charId}`)
     .then((res) => {
@@ -157,22 +155,22 @@ const updateSave = (event) => {
     })
     .catch((err) => console.log(err))
 
-    let buttonToBeChanged = document.querySelector("#character-add")
-
-    buttonToBeChanged.textContent = "Add"
-    buttonToBeChanged.name = ""
-    document.querySelector('form').addEventListener('submit', addCharacter)
-
     nameInput.value = ''
     raceInput.value = ''
     acInput.value = ''
     hpInput.value = ''
+
+    let buttonToBeChanged = document.querySelector("#character-add")
+    buttonToBeChanged.textContent = "Add"
+    buttonToBeChanged.name = ""
+    buttonToBeChanged.removeEventListener('click', updateSave)
+    buttonToBeChanged.addEventListener('submit', addCharacter)
 }
 
 const hpUp = (event) => {
     event.preventDefault()
     let charId = event.target.name
-    console.log('up', charId)
+    // console.log('up', charId)
     axios.put(`http://localhost:4444/character/up/${charId}`)
     .then((res) => {
         document.querySelector('#character-list').innerHTML = ''
@@ -184,7 +182,7 @@ const hpUp = (event) => {
 const hpDown = (event) => {
     event.preventDefault()
     let charId = event.target.name
-    console.log('down', charId)
+    // console.log('down', charId)
     axios.put(`http://localhost:4444/character/down/${charId}`)
     .then((res) => {
         document.querySelector('#character-list').innerHTML = ''
