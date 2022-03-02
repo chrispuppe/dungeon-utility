@@ -93,6 +93,8 @@ const updateStart = (event) => {
 
     let charId = event.target.name
     console.log(charId)
+
+    
     
     axios.get(`http://localhost:4444/character/${charId}`)
     .then((res) => {
@@ -102,6 +104,11 @@ const updateStart = (event) => {
         let raceInput = document.querySelector("#race-input")
         let acInput = document.querySelector("#ac-input")
         let hpInput = document.querySelector("#hp-input")
+        let buttonToBeChanged = document.querySelector("#character-add")
+
+        buttonToBeChanged.textContent = "Save"
+        buttonToBeChanged.name = `${charId}`
+        buttonToBeChanged.addEventListener('click', updateSave)
 
         nameInput.value = character.name
         raceInput.value = character.race
@@ -114,15 +121,37 @@ const updateStart = (event) => {
 
 const updateSave = (event) => {
     event.preventDefault()
+    let nameInput = document.querySelector("#name-input")
+    let raceInput = document.querySelector("#race-input")
+    let acInput = document.querySelector("#ac-input")
+    let hpInput = document.querySelector("#hp-input")
+
+    let character = {
+        name: nameInput.value,
+        race: raceInput.value,
+        ac: parseInt(acInput.value),
+        hp: parseInt(hpInput.value)
+    }
 
     let charId = event.target.name
     console.log(charId)
-    axios.put(`http://localhost:4444/characters/${charId}`)
+    axios.put(`http://localhost:4444/character/${charId}`, character)
     .then((res) => {
         document.querySelector('#character-list').innerHTML = ''
         getCharacters()
     })
     .catch((err) => console.log(err))
+
+    let buttonToBeChanged = document.querySelector("#character-add")
+
+    buttonToBeChanged.textContent = "Add"
+    buttonToBeChanged.name = ""
+    document.querySelector('form').addEventListener('submit', addCharacter)
+
+    nameInput.value = ''
+    raceInput.value = ''
+    acInput.value = ''
+    hpInput.value = ''
 }
 
 getCharacters()

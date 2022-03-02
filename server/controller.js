@@ -24,6 +24,7 @@ module.exports = {
         characterCards[charId].race = req.body.race
         characterCards[charId].hp = req.body.hp
         characterCards[charId].ac = req.body.ac
+        res.status(200).send(characterCards[charId])
     },
 
     deleteCharacter: (req, res) => {
