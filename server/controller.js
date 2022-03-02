@@ -36,11 +36,15 @@ module.exports = {
     charHpUp: (req, res) => {
         let charId = req.params.id
         characterCards[charId].hp++
+        // console.log(characterCards[charId].hp)
+        res.status(200).send(characterCards)
     },
 
     charHpDown: (req, res) => {
         let charId = req.params.id
         characterCards[charId].hp--
+        // console.log(characterCards[charId].hp)
+        res.status(200).send(characterCards)
     },
 
     // function rollDice(side, qty){

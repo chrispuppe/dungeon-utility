@@ -11,8 +11,23 @@ const createCard = (charObj, charId) => {
     characterCard.appendChild(characterRace)
     characterAc.textContent = charObj[charId].ac
     characterCard.appendChild(characterAc)
+
+    let tallyUpButton = document.createElement('button')
+    tallyUpButton.textContent = "+"
+    tallyUpButton.className = 'tally-up-button'
+    tallyUpButton.name = `${charId}`
+    tallyUpButton.addEventListener('click', hpUp)
+    characterCard.appendChild(tallyUpButton)
+
     characterHp.textContent = charObj[charId].hp
     characterCard.appendChild(characterHp)
+
+    let tallyDownButton = document.createElement('button')
+    tallyDownButton.textContent = "-"
+    tallyDownButton.className = 'tally-down-button'
+    tallyDownButton.name = `${charId}`
+    tallyDownButton.addEventListener('click', hpDown)
+    characterCard.appendChild(tallyDownButton)
 
     let deleteButton = document.createElement('button')
     deleteButton.className = 'delete-button'
@@ -152,6 +167,30 @@ const updateSave = (event) => {
     raceInput.value = ''
     acInput.value = ''
     hpInput.value = ''
+}
+
+const hpUp = (event) => {
+    event.preventDefault()
+    let charId = event.target.name
+    console.log('up', charId)
+    axios.put(`http://localhost:4444/character/up/${charId}`)
+    .then((res) => {
+        document.querySelector('#character-list').innerHTML = ''
+        getCharacters()
+    })
+    .catch((err) => console.log(err))
+}
+
+const hpDown = (event) => {
+    event.preventDefault()
+    let charId = event.target.name
+    console.log('down', charId)
+    axios.put(`http://localhost:4444/character/down/${charId}`)
+    .then((res) => {
+        document.querySelector('#character-list').innerHTML = ''
+        getCharacters()
+    })
+    .catch((err) => console.log(err))
 }
 
 getCharacters()
