@@ -5,12 +5,18 @@ const createCard = (charObj, charId) => {
     let characterAc = document.createElement('span')
     let characterHp = document.createElement('span')
 
-    characterName.textContent = charObj[charId].name
+    characterName.textContent =  `Name: ${charObj[charId].name} `
     characterCard.appendChild(characterName)
-    characterRace.textContent = charObj[charId].race
+    characterRace.textContent = `Race: ${charObj[charId].race} `
     characterCard.appendChild(characterRace)
-    characterAc.textContent = charObj[charId].ac
+    let linebreak = document.createElement("br")
+    characterCard.appendChild(linebreak)
+    characterAc.textContent = `AC: ${charObj[charId].ac} `
     characterCard.appendChild(characterAc)
+
+    let hpLabel = document.createElement('span')
+    hpLabel.textContent = 'HP: '
+    characterCard.appendChild(hpLabel)
 
     let tallyUpButton = document.createElement('button')
     tallyUpButton.textContent = "+"
@@ -29,6 +35,9 @@ const createCard = (charObj, charId) => {
     tallyDownButton.addEventListener('click', hpDown)
     characterCard.appendChild(tallyDownButton)
 
+    let linebreak2 = document.createElement("br")
+    characterCard.appendChild(linebreak2)
+
     let deleteButton = document.createElement('button')
     deleteButton.className = 'delete-button'
     deleteButton.textContent = 'Delete'
@@ -42,6 +51,8 @@ const createCard = (charObj, charId) => {
     updateButton.name = `${charId}`
     updateButton.addEventListener('click', updateStart)
     characterCard.appendChild(updateButton)
+
+    characterCard.classList.add('character-card')
 
     document.querySelector('ul').appendChild(characterCard)
 }

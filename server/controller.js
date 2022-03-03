@@ -12,7 +12,12 @@ module.exports = {
 
     addCharacter: (req, res) => {
         let character = req.body
-        // console.log(character)
+        if (character.hp === null) {
+            character.hp = 0
+        }
+        if (character.ac === null) {
+            character.ac = 0
+        }
         characterCards.push(character)
         res.status(200).send(characterCards)
         // console.log(characterCards)
@@ -22,7 +27,17 @@ module.exports = {
         let charId = req.params.id
         characterCards[charId].name = req.body.name
         characterCards[charId].race = req.body.race
-        characterCards[charId].hp = req.body.hp
+        console.log(req.body.hp)
+        if (req.body.hp === null){
+            characterCards[charId].hp = 0
+        } else {
+            characterCards[charId].hp = req.body.hp
+        }
+        if (req.body.ac === null){
+            characterCards[charId].ac = 0
+        } else {
+            characterCards[charId].ac = req.body.ac
+        }
         characterCards[charId].ac = req.body.ac
         res.status(200).send(characterCards[charId])
     },
