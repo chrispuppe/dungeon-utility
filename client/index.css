@@ -18,7 +18,9 @@ body {
 }
 
 .character-container {
-    width: 750;
+    width: 500;
+    /* padding-left: 10%;
+    padding-right: 10%; */
 }
 
 .character-card {
