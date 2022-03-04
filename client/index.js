@@ -25,7 +25,7 @@ const createCard = (charObj, charId) => {
     tallyDownButton.addEventListener('click', hpDown)
     characterCard.appendChild(tallyDownButton)    
 
-    characterHp.textContent = charObj[charId].hp
+    characterHp.textContent = ` ${charObj[charId].hp} `
     characterCard.appendChild(characterHp)
 
     let tallyUpButton = document.createElement('button')
