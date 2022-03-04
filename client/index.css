@@ -12,6 +12,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #20191b;
+    /* width: 50%; */
 }
 
 ul {
@@ -30,15 +31,20 @@ ul {
     padding-right: 10%; */
 }
 
-input, label {
+/* input, label {
     display: block;
     align-items: center;
-}
+} */
 
-form {
+#form-div {
     background:#7f7f7f;
     background:rgba(255,255,255,0.7);
 }
+
+/* form {
+    background:#7f7f7f;
+    background:rgba(255,255,255,0.7);
+} */
 
 .character-card {
     background:#7f7f7f;
