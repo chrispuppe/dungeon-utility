@@ -18,23 +18,23 @@ const createCard = (charObj, charId) => {
     hpLabel.textContent = 'HP: '
     characterCard.appendChild(hpLabel)
 
+    let tallyDownButton = document.createElement('button')
+    tallyDownButton.textContent = "-"
+    tallyDownButton.className = 'tally-down-button'
+    tallyDownButton.name = `${charId}`
+    tallyDownButton.addEventListener('click', hpDown)
+    characterCard.appendChild(tallyDownButton)    
+
+    characterHp.textContent = charObj[charId].hp
+    characterCard.appendChild(characterHp)
+
     let tallyUpButton = document.createElement('button')
     tallyUpButton.textContent = "+"
     tallyUpButton.className = 'tally-up-button'
     tallyUpButton.name = `${charId}`
     tallyUpButton.addEventListener('click', hpUp)
     characterCard.appendChild(tallyUpButton)
-
-    characterHp.textContent = charObj[charId].hp
-    characterCard.appendChild(characterHp)
-
-    let tallyDownButton = document.createElement('button')
-    tallyDownButton.textContent = "-"
-    tallyDownButton.className = 'tally-down-button'
-    tallyDownButton.name = `${charId}`
-    tallyDownButton.addEventListener('click', hpDown)
-    characterCard.appendChild(tallyDownButton)
-
+    
     let linebreak2 = document.createElement("br")
     characterCard.appendChild(linebreak2)
 

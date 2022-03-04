@@ -11,6 +11,12 @@ body {
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #20191b;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
 }
 
 .character-title {
@@ -32,4 +38,14 @@ body {
     padding: 5px;
     margin: 5px;
     display: inline-block;
+    color:black;
+    font-weight: bold;
+}
+
+.tally-down-button {
+    width: 20px;
+}
+
+.tally-up-button {
+    width: 20px;
 }
