@@ -12,6 +12,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #20191b;
+    margin-left: 10%;
+    margin-right: 10%;
     /* width: 50%; */
 }
 
@@ -26,20 +28,26 @@ ul {
 }
 
 .character-container {
-    width: 500;
-    /* padding-left: 10%;
-    padding-right: 10%; */
+    width: auto;
 }
-
-/* input, label {
-    display: block;
-    align-items: center;
-} */
 
 #form-div {
     background:#7f7f7f;
     background:rgba(255,255,255,0.7);
+    width: 100%;
+    height: auto;
+    font-weight: bold;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
+
+/* #form-div div {
+    display: flex;
+    flex-wrap: wrap;
+} */
 
 /* form {
     background:#7f7f7f;
@@ -49,7 +57,7 @@ ul {
 .character-card {
     background:#7f7f7f;
     background:rgba(255,255,255,0.7);
-    width: 250px;
+    width: auto;
     /* height: 70px; */
     border-radius: 10px;
     padding: 5px;

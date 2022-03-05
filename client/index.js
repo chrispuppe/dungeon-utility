@@ -1,42 +1,47 @@
 const createCard = (charObj, charId) => {
-    let characterCard = document.createElement('Div')
-    let characterName = document.createElement('span')
-    let characterRace = document.createElement('span')
-    let characterAc = document.createElement('span')
-    let characterHp = document.createElement('span')
+    let characterCard = document.createElement('div')
+    let characterName = document.createElement('div')
+    let characterRace = document.createElement('div')
+    let characterAc = document.createElement('div')
+    let characterHpDiv = document.createElement('div')
+
+    let hpLabelSpan = document.createElement('span')
+    let hpMinusSpan = document.createElement('span')
+    let hpNumSpan = document.createElement('span')
+    let hpPlusSpan = document.createElement('span')
 
     characterName.textContent =  `Name: ${charObj[charId].name} `
     characterCard.appendChild(characterName)
     characterRace.textContent = `Race: ${charObj[charId].race} `
     characterCard.appendChild(characterRace)
-    let linebreak = document.createElement("br")
-    characterCard.appendChild(linebreak)
+
     characterAc.textContent = `AC: ${charObj[charId].ac} `
     characterCard.appendChild(characterAc)
 
-    let hpLabel = document.createElement('span')
-    hpLabel.textContent = 'HP: '
-    characterCard.appendChild(hpLabel)
+    hpLabelSpan.textContent = 'HP: '
 
     let tallyDownButton = document.createElement('button')
     tallyDownButton.textContent = "-"
     tallyDownButton.className = 'tally-down-button'
     tallyDownButton.name = `${charId}`
     tallyDownButton.addEventListener('click', hpDown)
-    characterCard.appendChild(tallyDownButton)    
+    hpMinusSpan.appendChild(tallyDownButton)    
 
-    characterHp.textContent = ` ${charObj[charId].hp} `
-    characterCard.appendChild(characterHp)
+    hpNumSpan.textContent = ` ${charObj[charId].hp} `
 
     let tallyUpButton = document.createElement('button')
     tallyUpButton.textContent = "+"
     tallyUpButton.className = 'tally-up-button'
     tallyUpButton.name = `${charId}`
     tallyUpButton.addEventListener('click', hpUp)
-    characterCard.appendChild(tallyUpButton)
-    
-    let linebreak2 = document.createElement("br")
-    characterCard.appendChild(linebreak2)
+    hpPlusSpan.appendChild(tallyUpButton)
+
+    characterHpDiv.appendChild(hpLabelSpan)
+    characterHpDiv.appendChild(hpMinusSpan)
+    characterHpDiv.appendChild(hpNumSpan)
+    characterHpDiv.appendChild(hpPlusSpan)
+
+    characterCard.appendChild(characterHpDiv)
 
     let deleteButton = document.createElement('button')
     deleteButton.className = 'delete-button'
