@@ -66,7 +66,6 @@ const getCharacters = () => {
     axios.get('http://localhost:4444/characters')
     .then((res) => {
         const data = res.data
-        // console.log(data)
         for (let i = 0; i < data.length; i++) {
             createCard(data, i)
         }
@@ -87,8 +86,6 @@ const addCharacter = (event) => {
         ac: parseInt(acInput.value),
         hp: parseInt(hpInput.value)
     }
-    // console.log(character)
-
 
     axios.post('http://localhost:4444/character', character)
     .then((res) => {
@@ -110,7 +107,7 @@ const deleteCharacter = (event) => {
     event.preventDefault()
 
     let charId = event.target.name
-    console.log(charId)
+
     axios.delete(`http://localhost:4444/characters/${charId}`)
     .then((res) => {
         document.querySelector('#character-list').innerHTML = ''
@@ -123,12 +120,10 @@ const updateStart = (event) => {
     event.preventDefault()
 
     let charId = event.target.name
-    console.log(charId)
     
     axios.get(`http://localhost:4444/character/${charId}`)
     .then((res) => {
         const character = res.data
-        // console.log(data)
         let nameInput = document.querySelector("#name-input")
         let raceInput = document.querySelector("#race-input")
         let acInput = document.querySelector("#ac-input")
@@ -163,7 +158,7 @@ const updateSave = (event) => {
     }
 
     let charId = event.target.name
-    console.log(charId)
+
     axios.put(`http://localhost:4444/character/${charId}`, character)
     .then((res) => {
         document.querySelector('#character-list').innerHTML = ''
@@ -186,7 +181,7 @@ const updateSave = (event) => {
 const hpUp = (event) => {
     event.preventDefault()
     let charId = event.target.name
-    // console.log('up', charId)
+
     axios.put(`http://localhost:4444/character/up/${charId}`)
     .then((res) => {
         document.querySelector('#character-list').innerHTML = ''
@@ -198,7 +193,7 @@ const hpUp = (event) => {
 const hpDown = (event) => {
     event.preventDefault()
     let charId = event.target.name
-    // console.log('down', charId)
+
     axios.put(`http://localhost:4444/character/down/${charId}`)
     .then((res) => {
         document.querySelector('#character-list').innerHTML = ''
